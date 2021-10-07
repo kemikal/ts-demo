@@ -9,9 +9,15 @@ interface Props {
     users: Users[]
 }
 
-class UsersClass extends Component <Props, {}> {
+interface State {
+    users: Users[],
+}
 
-    users: Users[] = this.props.users;
+class UsersClass extends Component <Props, State> {
+
+    state = {
+        users: this.props.users,
+    }
 
     numberArray: number[] = [1,4,6,8,3,5];
 
@@ -37,13 +43,13 @@ class UsersClass extends Component <Props, {}> {
             console.log(this.myObjects[i]);         
         }
 
-        const result = this.users.find(obj => obj.id === 1);
+        const result = this.state.users.find(obj => obj.id === 1);
         console.log(result);
         
 
         console.log("lenghts", this.la, this.ls);
         
-        console.log("users", this.users);
+        console.log("users", this.state.users);
         
         // const users: Object[] = []
 
@@ -51,7 +57,7 @@ class UsersClass extends Component <Props, {}> {
             <div>
                 <h1>All the users</h1>
                 <ul>
-                    {Object.values(this.users).map((user, i) => {
+                    {Object.values(this.state.users).map((user, i) => {
                         return <li key={i}>{console.log("user", user.uName)}
                         {user.uName}</li>
                     })}
